@@ -7,10 +7,10 @@ interface todoItem {
   onRemove: (id: string) => void;
 }
 
-const TodoItem: React.FC<todoItem> = (props) => {
+const TodoItem: React.FC<todoItem> = ({ id, onRemove, children }) => {
   return (
-    <li className={classes.item} onClick={() => props.onRemove(props.id)}>
-      {props.children}
+    <li className={classes.item} onClick={() => onRemove(id)}>
+      {children}
     </li>
   );
 };
