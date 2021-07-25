@@ -7,9 +7,11 @@ function App() {
     { id: "gg", text: "hello world" },
     { id: "234234", text: "this is note 2" },
   ];
+
+  const addTodoHandler = (text: string): void => {};
   return (
     <div>
-      <NewTodo />
+      <NewTodo onAddTodo={addTodoHandler} />
       <Todos items={todos} />
     </div>
   );
