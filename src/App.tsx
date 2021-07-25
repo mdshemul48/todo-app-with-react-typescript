@@ -11,15 +11,11 @@ function App() {
       return [...prevState, { id: Math.random().toString(), text }];
     });
   };
+
   const removeTodoHandler = (id: string): void => {
-    setTodos((prevState) => {
-      return [
-        ...prevState.filter((item) => {
-          return item.id !== id;
-        }),
-      ];
-    });
+    setTodos((prevState) => [...prevState.filter((item) => item.id !== id)]);
   };
+
   return (
     <div>
       <NewTodo onAddTodo={addTodoHandler} />
