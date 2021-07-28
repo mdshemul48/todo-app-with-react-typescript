@@ -1,25 +1,31 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 import classes from "./NewTodo.module.css";
 const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
-  const todoTextInputRef = useRef<HTMLInputElement>(null);
+  const [text, setText] = useState("");
+
+  const textChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setText(event.target.value);
+  };
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const enteredText = todoTextInputRef.current!.value;
-    if (enteredText.trim().length === 0) {
+    if (text.trim().length === 0) {
       // throw error
       return;
     }
 
-    props.onAddTodo(enteredText);
+    props.onAddTodo(text);
+    setText("");
   };
-  
+
   return (
     <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor="text">Todo Text</label>
-      <input ref={todoTextInputRef} type="text" id="text" />
+      <input onChange={textChangeHandler} value={text} type="text" id="text" />
       <button>Add Todo</button>
     </form>
   );
