@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import classes from "./NewTodo.module.css";
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
   const [text, setText] = useState("");
 
   const textChangeHandler = (
@@ -18,7 +18,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(text);
+    // props.onAddTodo(text);
     setText("");
   };
 

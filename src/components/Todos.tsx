@@ -8,14 +8,14 @@ interface todos {
   onRemove: (id: string) => void;
 }
 
-const Todos: React.FC<todos> = (props) => {
+const Todos: React.FC = () => {
   return (
     <ul className={classes.todos}>
-      {props.items.map((item) => (
+      {/* {props.items.map((item) => (
         <TodoItem key={item.id} id={item.id} onRemove={props.onRemove}>
           {item.text}
         </TodoItem>
-      ))}
+      ))} */}
     </ul>
   );
 };
