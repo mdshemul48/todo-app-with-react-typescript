@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import todo from "../models/todo";
 import todoContextInterface from "../models/todoContext";
 
@@ -22,6 +22,20 @@ export const TodoContextProvider: React.FC = (props) => {
       ...prevState.filter((item: todo) => item.id !== id),
     ]);
   };
+
+  useEffect(() => {
+    const getTodosFromLocalStorage = localStorage.getItem("todos");
+    if (getTodosFromLocalStorage) {
+      const todosAsJson: todo[] = JSON.parse(getTodosFromLocalStorage);
+      if (todosAsJson.length !== 0) {
+        setTodos(todosAsJson);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <todoContext.Provider
