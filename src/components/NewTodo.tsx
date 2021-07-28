@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
+import { todoContext } from "../store/todos-context";
 import classes from "./NewTodo.module.css";
 const NewTodo: React.FC = () => {
+  const { addTodo } = useContext(todoContext);
   const [text, setText] = useState("");
 
   const textChangeHandler = (
@@ -18,7 +19,7 @@ const NewTodo: React.FC = () => {
       return;
     }
 
-    // props.onAddTodo(text);
+    addTodo({ text, id: Math.random().toString() });
     setText("");
   };
 
